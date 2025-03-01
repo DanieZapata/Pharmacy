@@ -1,0 +1,26 @@
+/* Estilo del sidebar estático */
+.sidenav {
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    width: 250px; /* Ancho fijo del sidebar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+  }
+  
+  /* Estilos para los enlaces */
+  .sidenav a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    background: #575757;
+  }
+  
