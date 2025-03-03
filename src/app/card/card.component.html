@@ -1,1 +1,15 @@
-<p>card works!</p>
+<div class="card-container">
+    <mat-card *ngFor="let medicamento of medicamentos" class="medication-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ medicamento.nombre }}</mat-card-title>
+        <mat-card-subtitle>Lote: {{ medicamento.lote }}</mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <p><strong>Fecha de Vencimiento:</strong> {{ medicamento.fechaVencimiento }}</p>
+        <p><strong>Cantidad Disponible:</strong> {{ medicamento.cantidad }} unidades</p>
+        <p><strong>Precio:</strong> ${{ medicamento.precio }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
