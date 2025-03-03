@@ -1,4 +1,4 @@
-/* Estilo del sidebar estático */
+
 .sidenav {
     height: 100vh; /* Ocupa toda la altura de la pantalla */
     width: 250px; /* Ancho fijo del sidebar */
@@ -10,6 +10,9 @@
     padding-top: 20px;
   }
   
+  .sidenav h2{
+    text-align: center;
+  }
   /* Estilos para los enlaces */
   .sidenav a {
     padding: 10px 20px;
