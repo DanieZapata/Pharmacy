@@ -11,17 +11,17 @@
 
     <ng-container matColumnDef="vencimiento">
       <th mat-header-cell *matHeaderCellDef> Fecha de Vencimiento </th>
-      <td mat-cell *matCellDef="let element"> {{element.vencimiento}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.vencimiento | date:'dd/MM/yyyy'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="amount">
         <th mat-header-cell *matHeaderCellDef> Cantidad Disponible </th>
-        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} unidades</td>
       </ng-container>
 
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef> Precio </th>
-      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.price}} Bs. </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

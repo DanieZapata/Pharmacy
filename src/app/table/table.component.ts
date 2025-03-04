@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 export interface PeriodicElement {
   name: string;
@@ -25,7 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule, CommonModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
