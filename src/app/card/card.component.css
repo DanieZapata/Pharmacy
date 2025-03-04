@@ -1,0 +1,19 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+}
+
+.medication-card {
+  width: 232px;
+}
+
+mat-card-title, mat-card-subtitule{
+  font-size: 16px;
+}
+
+p{
+  margin: 5px 0;
+  font-size: 16px;
+}
