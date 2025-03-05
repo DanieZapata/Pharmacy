@@ -1,3 +1,5 @@
+<app-search (searchChange)="filtrarResultados($event)"></app-search>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Nombre </th>
