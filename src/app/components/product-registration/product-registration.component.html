@@ -1,1 +1,30 @@
 <p>product-registration works!</p>
+<button (click)="openModal()" class="add-btn">Agregar Producto</button>
+
+<div class="modal-overlay" *ngIf="isModalOpen">
+  <div class="modal">
+    <h2>Registrar Producto</h2>
+    
+    <form>
+      <label>Nombre del Producto:</label>
+      <input type="text" [(ngModel)]="product.name" name="name" required>
+
+      <label>Lote:</label>
+      <input type="text" [(ngModel)]="product.lote" name="lote" required>
+
+      <label>Cantidad:</label>
+      <input type="number" [(ngModel)]="product.cantidad" name="cantidad" required>
+
+      <label>Fecha de Vencimiento:</label>
+      <input type="date" [(ngModel)]="product.fechaVencimiento" name="fechaVencimiento" required>
+
+      <label>Precio:</label>
+      <input type="number" [(ngModel)]="product.precio" name="precio" required>
+
+      <div class="modal-actions">
+        <button type="submit">Guardar</button>
+        <button type="button" (click)="closeModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
