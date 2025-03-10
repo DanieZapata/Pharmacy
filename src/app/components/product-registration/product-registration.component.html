@@ -5,7 +5,7 @@
   <div class="modal">
     <h2>Registrar Producto</h2>
     
-    <form>
+    <form (ngSubmit)="submitForm()">
       <label>Nombre del Producto:</label>
       <input type="text" [(ngModel)]="product.name" name="name" required>
 

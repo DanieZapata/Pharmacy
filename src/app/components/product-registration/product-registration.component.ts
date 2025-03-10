@@ -28,4 +28,8 @@ export class ProductRegistrationComponent {
     this.isModalOpen = false;
   }
 
+  submitForm() {
+    console.log('Producto registrado:', this.product);
+    this.closeModal();
+  }
 }
