@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TableComponent } from "../table/table.component";
 
 @Component({
   selector: 'app-product-registration',
   standalone: true,
-  imports: [NgIf, FormsModule],
+  imports: [NgIf, FormsModule, TableComponent],
   templateUrl: './product-registration.component.html',
   styleUrl: './product-registration.component.css'
 })
