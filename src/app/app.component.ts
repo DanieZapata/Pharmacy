@@ -8,7 +8,7 @@ import { ProductRegistrationComponent } from './components/product-registration/
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SidebarComponent, RouterModule, CommonModule, ProductRegistrationComponent /*CardComponent*/],
+  imports: [SidebarComponent, RouterModule, CommonModule, /*ProductRegistrationComponent /*CardComponent*/],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
