@@ -1,0 +1,29 @@
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    padding-bottom: 5px;
+  }
+  
+  .search-container input {
+    width: 100%; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .search-container button {
+    width: 3%; 
+    padding: 5px;  
+    border: 1px solid #ccc;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .mat-icon{
+    color: gray;
+  }
+  

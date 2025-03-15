@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { SearchComponent } from '../search/search.component';
 
 export interface PeriodicElement {
   name: string;
@@ -26,11 +27,21 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [MatTableModule, CommonModule],
+  imports: [MatTableModule, CommonModule, SearchComponent],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
 export class TableComponent {
   displayedColumns: string[] = ['name', 'lote', 'vencimiento', 'amount', 'price'];
   dataSource = ELEMENT_DATA;
+
+  filtrarResultados(searchTerm: string) {
+    if (!searchTerm) {
+      this.dataSource = [...ELEMENT_DATA];
+    } else {
+      this.dataSource = ELEMENT_DATA.filter(item =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+  }
 }
