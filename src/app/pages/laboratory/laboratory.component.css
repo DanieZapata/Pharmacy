@@ -1,0 +1,64 @@
+.add-btn {
+    padding: 10px 15px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+  }
+  
+  .modal h2 {
+    margin-top: 0;
+  }
+  
+  .modal input {
+    width: 100%; /* Ocupará todo el ancho disponible */
+    padding: 10px; /* Asegura espacio dentro del input */
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Asegura que el padding no expanda el input */
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .modal-actions button {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .modal-actions button:first-child {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .modal-actions button:last-child {
+    background-color: #dc3545;
+    color: white;
+  }
+  
