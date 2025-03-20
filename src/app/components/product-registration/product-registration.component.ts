@@ -1,17 +1,24 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LaboratoryService } from '../../pages/laboratory/laboratory.serve';
 import { TableComponent } from "../table/table.component";
+
+interface Laboratory {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-product-registration',
   standalone: true,
-  imports: [NgIf, FormsModule, TableComponent],
+  imports: [NgIf, NgFor, FormsModule, TableComponent],
   templateUrl: './product-registration.component.html',
-  styleUrl: './product-registration.component.css'
+  styleUrl: './product-registration.component.css',
 })
 export class ProductRegistrationComponent {
   isModalOpen = false;
+  laboratories: Laboratory[] = []; // ✅ Ahora tiene un tipo definido
 
   product = {
     name: '',
@@ -19,7 +26,12 @@ export class ProductRegistrationComponent {
     cantidad: 0,
     fechaVencimiento: '',
     precio: 0,
+    laboratoryId: null,
   };
+
+  constructor(private laboratoryService: LaboratoryService) {
+    this.laboratories = this.laboratoryService.getLaboratories();
+  }
 
   openModal() {
     this.isModalOpen = true;
@@ -27,6 +39,7 @@ export class ProductRegistrationComponent {
 
   closeModal() {
     this.isModalOpen = false;
+    this.product = { name: '', lote: '', cantidad: 0, fechaVencimiento: '', precio: 0, laboratoryId: null };
   }
 
   submitForm() {
