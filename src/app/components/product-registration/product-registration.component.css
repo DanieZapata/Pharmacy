@@ -38,6 +38,15 @@
     border-radius: 5px;
     box-sizing: border-box; /* Asegura que el padding no expanda el input */
   }
+
+  .modal select{
+    width: 100%; /* Ocupará todo el ancho disponible */
+    padding: 10px; /* Asegura espacio dentro del input */
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+  }
   
   .modal-actions {
     display: flex;

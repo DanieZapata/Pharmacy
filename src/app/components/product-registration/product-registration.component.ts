@@ -18,7 +18,7 @@ interface Laboratory {
 })
 export class ProductRegistrationComponent {
   isModalOpen = false;
-  laboratories: Laboratory[] = []; // ✅ Ahora tiene un tipo definido
+  laboratories: Laboratory[] = [];
 
   product = {
     name: '',
