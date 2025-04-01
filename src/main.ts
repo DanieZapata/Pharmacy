@@ -3,8 +3,12 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http'; // 👉 Agregar esto
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(withFetch()) // 👉 Agregar esto
+  ]
 })
   .catch((err) => console.error(err));
