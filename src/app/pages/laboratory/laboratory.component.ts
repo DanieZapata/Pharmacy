@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-laboratory',
@@ -10,11 +11,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './laboratory.component.css'
 })
 export class LaboratoryComponent {
+  private http = inject(HttpClient); 
+
   isModalOpen = false;
 
   laboratory = {
-    name: '',
-    phone: '',
+    laboratoryId: null,  
+    laboratoryName: '',  
+    phone: ''
   };
 
   openModal() {
@@ -26,8 +30,16 @@ export class LaboratoryComponent {
   }
 
   submitForm() {
-    console.log('Laboratorio registrado:', this.laboratory);
-    this.closeModal();
-  }
+    const url = 'http://localhost:8081/laboratories';
 
+    this.http.post(url, this.laboratory).subscribe({
+      next: (response) => {
+        console.log('Laboratorio registrado:', response);
+        this.closeModal();
+      },
+      error: (error) => {
+        console.error('Error al registrar el laboratorio:', error);
+      }
+    });
+  }
 }
