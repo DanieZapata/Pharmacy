@@ -30,7 +30,7 @@ export class ProductRegistrationComponent {
   };
 
   constructor(private laboratoryService: LaboratoryService) {
-    this.laboratories = this.laboratoryService.getLaboratories();
+   // this.laboratories = this.laboratoryService.getLaboratories();
   }
 
   openModal() {
