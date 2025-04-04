@@ -15,6 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000; 
   }
   
   .modal {
@@ -24,6 +25,7 @@
     width: 400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+    z-index: 1000; 
   }
   
   .modal h2 {
