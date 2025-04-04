@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { CardComponent } from "../../components/card/card.component";
 
 @Component({
   selector: 'app-laboratory',
   standalone: true,
-  imports: [NgIf, FormsModule],
+  imports: [NgIf, FormsModule, CardComponent],
   templateUrl: './laboratory.component.html',
   styleUrl: './laboratory.component.css'
 })
