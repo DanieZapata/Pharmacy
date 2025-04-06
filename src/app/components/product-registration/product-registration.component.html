@@ -3,7 +3,7 @@
 <div class="modal-overlay" *ngIf="isModalOpen">
   <div class="modal">
     <h2>Registrar Producto</h2>
-    
+
     <form (ngSubmit)="submitForm()">
       <label>Nombre del Producto:</label>
       <input type="text" [(ngModel)]="product.name" name="name" required>
@@ -20,6 +20,13 @@
       <label>Precio:</label>
       <input type="number" [(ngModel)]="product.precio" name="precio" required>
 
+      <label>Laboratorio:</label>
+      <select [(ngModel)]="product.laboratoryId" name="laboratoryId" required>
+        <option *ngFor="let lab of laboratories" [value]="lab.id">
+          {{ lab.name }}
+        </option>
+      </select>
+
       <div class="modal-actions">
         <button type="submit">Guardar</button>
         <button type="button" (click)="closeModal()">Cancelar</button>
@@ -27,4 +34,5 @@
     </form>
   </div>
 </div>
+
 <app-table></app-table>
