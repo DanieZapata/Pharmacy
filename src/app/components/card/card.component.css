@@ -1,19 +1,40 @@
-.card-container {
+.lab-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  width: 232px;
+  height: 140px;
+  justify-content: center;
+}
+
+.container {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-
 }
 
-.medication-card {
-  width: 232px;
-}
-
-mat-card-title, mat-card-subtitule{
+mat-card-title {
   font-size: 16px;
+  text-align: center;
 }
 
-p{
+mat-card-header{
+  background-color: gray;
+  color: aliceblue;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10px 10px 0 0;
+}
+
+mat-card-actions {
+  margin-top: -5px;
+}
+
+p {
   margin: 5px 0;
   font-size: 16px;
+}
+
+p strong {
+  font-weight: 500;
 }

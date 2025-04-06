@@ -1,0 +1,21 @@
+<button (click)="openModal()" class="add-btn">Agregar Laboratorio</button>
+
+<div class="modal-overlay" *ngIf="isModalOpen">
+  <div class="modal">
+    <h2>Registrar Laboratorio</h2>
+    
+    <form (ngSubmit)="submitForm()">
+      <label>Nombre del Laboratorio:</label>
+      <input type="text" [(ngModel)]="laboratory.laboratoryName" name="name" required>
+
+      <label>Numero de Telefono:</label>
+      <input type="text" [(ngModel)]="laboratory.phone" name="phone" required>
+
+      <div class="modal-actions">
+        <button type="submit">Guardar</button>
+        <button type="button" (click)="closeModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-card></app-card>

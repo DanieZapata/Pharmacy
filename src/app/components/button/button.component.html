@@ -1,0 +1,10 @@
+<div class="menu-container">
+    <button (click)="toggleMenu()" class="menu-button">⋮</button>
+  
+    <ul *ngIf="isMenuOpen" class="menu-list">
+      <li (click)="action('Agregar')">Agregar</li>
+      <li (click)="action('Editar')">Editar</li>
+      <li (click)="action('Eliminar')">Eliminar</li>
+    </ul>
+  </div>
+  
