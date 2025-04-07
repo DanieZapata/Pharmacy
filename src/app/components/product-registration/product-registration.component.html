@@ -22,8 +22,8 @@
 
       <label>Laboratorio:</label>
       <select [(ngModel)]="product.laboratoryId" name="laboratoryId" required>
-        <option *ngFor="let lab of laboratories" [value]="lab.id">
-          {{ lab.name }}
+        <option *ngFor="let lab of laboratories" [value]="lab.laboratoryId">
+          {{ lab.laboratoryName }}
         </option>
       </select>
 
