@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LaboratoryService, Laboratory } from '../../services/laboratory.serve';
+import { LaboratoryService, Laboratory } from '../../services/laboratory.service';
 import { TableComponent } from "../table/table.component";
 
 @Component({
