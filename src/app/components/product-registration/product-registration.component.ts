@@ -1,13 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LaboratoryService } from '../../services/laboratory.serve';
+import { LaboratoryService, Laboratory } from '../../services/laboratory.serve';
 import { TableComponent } from "../table/table.component";
-
-interface Laboratory {
-  id: number;
-  name: string;
-}
 
 @Component({
   selector: 'app-product-registration',
@@ -29,9 +24,13 @@ export class ProductRegistrationComponent {
     laboratoryId: null,
   };
 
-  constructor(private laboratoryService: LaboratoryService) {
-   // this.laboratories = this.laboratoryService.getLaboratories();
-  }
+  constructor(private laboratoryService: LaboratoryService) {}
+    ngOnInit() {
+      this.laboratoryService.getLaboratories().subscribe({
+        next: (labs) => this.laboratories = labs,
+        error: (err) => console.error('Error cargando laboratorios', err)
+      });
+    }
 
   openModal() {
     this.isModalOpen = true;
