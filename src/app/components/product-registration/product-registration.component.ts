@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LaboratoryService, Laboratory } from '../../services/laboratory.service';
 import { TableComponent } from "../table/table.component";
+import { HttpClient } from '@angular/common/http';
+import { response } from 'express';
 
 @Component({
   selector: 'app-product-registration',
@@ -15,12 +17,16 @@ export class ProductRegistrationComponent {
   isModalOpen = false;
   laboratories: Laboratory[] = [];
 
+  private http = inject(HttpClient); 
+
   product = {
-    name: '',
+    nameProduct: '',
+    priceProduct: 0,
     lote: '',
-    cantidad: 0,
-    fechaVencimiento: '',
-    precio: 0,
+    amount: 0,
+    expiration: '',
+    composition: '',
+    description: '',
     laboratoryId: null,
   };
 
@@ -38,11 +44,20 @@ export class ProductRegistrationComponent {
 
   closeModal() {
     this.isModalOpen = false;
-    this.product = { name: '', lote: '', cantidad: 0, fechaVencimiento: '', precio: 0, laboratoryId: null };
   }
 
   submitForm() {
-    console.log('Producto registrado:', this.product);
-    this.closeModal();
+    const url = 'http://localhost:8081/productos';
+
+    this.http.post(url, this.product).subscribe({
+      next: (response) => {
+        console.log('Producto registrado:', response);
+        this.closeModal();
+      },
+      error: (error) => {
+        console.error('Error al registrar el producto:', error);
+      }
+    })
+
   }
 }
