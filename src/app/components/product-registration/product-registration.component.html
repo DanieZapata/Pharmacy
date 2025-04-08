@@ -6,19 +6,25 @@
 
     <form (ngSubmit)="submitForm()">
       <label>Nombre del Producto:</label>
-      <input type="text" [(ngModel)]="product.name" name="name" required>
+      <input type="text" [(ngModel)]="product.nameProduct" name="name" required>
+
+      <label>Precio:</label>
+      <input type="number" [(ngModel)]="product.priceProduct" name="precio" required>
 
       <label>Lote:</label>
       <input type="text" [(ngModel)]="product.lote" name="lote" required>
 
       <label>Cantidad:</label>
-      <input type="number" [(ngModel)]="product.cantidad" name="cantidad" required>
+      <input type="number" [(ngModel)]="product.amount" name="cantidad" required>
 
       <label>Fecha de Vencimiento:</label>
-      <input type="date" [(ngModel)]="product.fechaVencimiento" name="fechaVencimiento" required>
+      <input type="date" [(ngModel)]="product.expiration" name="expiration" required>
 
-      <label>Precio:</label>
-      <input type="number" [(ngModel)]="product.precio" name="precio" required>
+      <label>Composicion:</label>
+      <input type="text" [(ngModel)]="product.composition" name="composition" required>
+
+      <label>Descripcion:</label>
+      <input type="text" [(ngModel)]="product.description" name="description" required>
 
       <label>Laboratorio:</label>
       <select [(ngModel)]="product.laboratoryId" name="laboratoryId" required>
