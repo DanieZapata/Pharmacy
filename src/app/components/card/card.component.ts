@@ -24,7 +24,7 @@ export class CardComponent implements OnInit {
     this.http.get<any[]>('http://localhost:8081/laboratories').subscribe({
       next: (data) => {
         this.laboratorios = data;
-        console.log('Laboratorios obtenidos:', this.laboratorios);
+        console.log('Laboratorios obtenidos correctamente');
       },
       error: (error) => {
         console.error('Error al obtener los laboratorios:', error);

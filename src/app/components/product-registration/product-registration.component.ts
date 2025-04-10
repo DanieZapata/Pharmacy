@@ -53,6 +53,7 @@ export class ProductRegistrationComponent {
       next: (response) => {
         console.log('Producto registrado:', response);
         this.closeModal();
+        window.location.reload();
       },
       error: (error) => {
         console.error('Error al registrar el producto:', error);
