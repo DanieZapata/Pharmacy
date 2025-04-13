@@ -2,13 +2,19 @@
   <mat-card *ngFor="let laboratorio of laboratorios" class="lab-card">
     <mat-card-header>
       <mat-card-title>{{ laboratorio.laboratoryName }}</mat-card-title>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editar(laboratorio)">
+          <mat-icon>edit</mat-icon>
+          <span>Editar</span>
+        </button>
+      </mat-menu>
     </mat-card-header>
     <mat-card-content>
       <p><strong>ID:</strong> {{ laboratorio.laboratoryId }}</p>
       <p><strong>Teléfono:</strong> {{ laboratorio.phone }}</p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Ver detalles</button>
-    </mat-card-actions>
   </mat-card>
 </div>
