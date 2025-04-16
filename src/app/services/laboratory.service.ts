@@ -18,4 +18,8 @@ export class LaboratoryService {
   getLaboratories(): Observable<Laboratory[]> {
     return this.http.get<Laboratory[]>(this.apiUrl);
   }
+
+  deleteLaboratory(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
