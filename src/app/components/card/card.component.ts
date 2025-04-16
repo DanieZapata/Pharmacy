@@ -38,6 +38,19 @@ export class CardComponent implements OnInit {
   }
 
   editar(lab: Laboratory) {
-    this.editarLaboratorio.emit(lab);
+    this.editarLaboratorio.emit(lab); // Emitimos el evento con los datos del laboratorio
   }
+  
+  eliminarLaboratorio(id: number) {
+    this.http.delete(`http://localhost:8081/laboratories/${id}`, { responseType: 'text' }).subscribe({
+      next: (response) => {
+        console.log(`Laboratorio con ID ${id} eliminado correctamente:`, response);
+        this.laboratorios = this.laboratorios.filter(lab => lab.LaboratoryId !== id);
+        this.obtenerLaboratorios();
+      },
+      error: (error) => {
+        console.error('Error al eliminar el laboratorio:', error);
+      }
+    });
+  }  
 }
