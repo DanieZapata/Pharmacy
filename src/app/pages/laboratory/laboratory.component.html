@@ -2,13 +2,13 @@
 
 <div class="modal-overlay" *ngIf="isModalOpen">
   <div class="modal">
-    <h2>Registrar Laboratorio</h2>
+    <h2>{{ isEditMode ? 'Editar Laboratorio' : 'Registrar Laboratorio' }}</h2>
     
     <form (ngSubmit)="submitForm()">
       <label>Nombre del Laboratorio:</label>
       <input type="text" [(ngModel)]="laboratory.laboratoryName" name="name" required>
 
-      <label>Numero de Telefono:</label>
+      <label>Numero de Teléfono:</label>
       <input type="text" [(ngModel)]="laboratory.phone" name="phone" required>
 
       <div class="modal-actions">
@@ -18,4 +18,5 @@
     </form>
   </div>
 </div>
-<app-card></app-card>
+
+<app-card (editarLaboratorio)="onEditarLaboratorio($event)"></app-card>

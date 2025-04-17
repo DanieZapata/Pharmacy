@@ -3,26 +3,42 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CardComponent } from "../../components/card/card.component";
+import { LaboratoryService } from '../../services/laboratory.service';
 
 @Component({
   selector: 'app-laboratory',
   standalone: true,
   imports: [NgIf, FormsModule, CardComponent],
   templateUrl: './laboratory.component.html',
-  styleUrl: './laboratory.component.css'
+  styleUrls: ['./laboratory.component.css']
 })
 export class LaboratoryComponent {
-  private http = inject(HttpClient); 
+  private http = inject(HttpClient);
+  private laboratoryService = inject(LaboratoryService);
 
+  laboratorios: any[] = [];
   isModalOpen = false;
+  isEditMode = false;
 
   laboratory = {
-    laboratoryId: null,  
-    laboratoryName: '',  
+    laboratoryId: null,
+    laboratoryName: '',
     phone: ''
   };
 
-  openModal() {
+  // Captura el evento emitido desde CardComponent y abre el modal con los datos del laboratorio
+  onEditarLaboratorio(lab: any) {
+    this.openModal(lab); 
+  }
+
+  openModal(lab?: any) {
+    if (lab) {
+      this.laboratory = { ...lab };  // Copia los datos del laboratorio
+      this.isEditMode = true;
+    } else {
+      this.laboratory = { laboratoryId: null, laboratoryName: '', phone: '' };  // Nuevo laboratorio
+      this.isEditMode = false;
+    }
     this.isModalOpen = true;
   }
 
@@ -30,16 +46,39 @@ export class LaboratoryComponent {
     this.isModalOpen = false;
   }
 
-  submitForm() {
-    const url = 'http://localhost:8081/laboratories';
-
-    this.http.post(url, this.laboratory).subscribe({
-      next: (response) => {
-        console.log('Laboratorio registrado:', response);
-        this.closeModal();
+  obtenerLaboratorios() {
+    this.laboratoryService.getLaboratories().subscribe({
+      next: (data) => {
+        this.laboratorios = data;
+        console.log('Laboratorios cargados correctamente');
       },
-      error: (error) => {
-        console.error('Error al registrar el laboratorio:', error);
+      error: (err) => {
+        console.error('Error al cargar laboratorios', err);
+      }
+    });
+  }
+
+  ngOnInit() {
+    this.obtenerLaboratorios();
+  }
+
+  submitForm() {
+    const url = this.isEditMode
+      ? `http://localhost:8081/laboratories/${this.laboratory.laboratoryId}`
+      : 'http://localhost:8081/laboratories';
+
+    const httpCall = this.isEditMode
+      ? this.http.put(url, this.laboratory)
+      : this.http.post(url, this.laboratory);
+
+    httpCall.subscribe({
+      next: () => {
+        console.log(this.isEditMode ? 'Laboratorio actualizado' : 'Laboratorio creado');
+        this.closeModal();
+        this.obtenerLaboratorios();
+      },
+      error: (err) => {
+        console.error('Error:', err);
       }
     });
   }
