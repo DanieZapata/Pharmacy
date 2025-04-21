@@ -19,4 +19,10 @@
   </div>
 </div>
 
-<app-card (editarLaboratorio)="onEditarLaboratorio($event)"></app-card>
+<app-card
+  [laboratorios]="laboratorios"
+  (editarLaboratorio)="onEditarLaboratorio($event)"
+  (laboratorioEliminado)="obtenerLaboratorios()">
+</app-card>
+
+
