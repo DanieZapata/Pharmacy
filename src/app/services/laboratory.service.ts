@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 export interface Laboratory {
   laboratoryId: number;
   laboratoryName: string;
+  phone:string;
 }
 
 @Injectable({
