@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Producto {
+  idProduct: number;
   nameProduct: string;
-  priceProdcut: number;
+  priceProduct: number;
   lote: string;
   amount: number;
   expiration: Date;
@@ -23,5 +24,15 @@ export class ProductoService {
 
   getProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.apiUrl);
+  }
+
+  editarProducto(product: Producto): Observable<Producto> {
+    const endpoint = `${this.apiUrl}/${product.idProduct}`;
+    return this.http.put<Producto>(endpoint, product);
+  }
+
+  eliminarProducto(productId: number): Observable<string> {
+    const endpoint = `${this.apiUrl}/${productId}`;
+    return this.http.delete<string>(endpoint, { responseType: 'text' as 'json' });
   }
 }
