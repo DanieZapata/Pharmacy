@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +28,7 @@ export class TableComponent implements OnInit {
   dataSource: Producto[] = [];
   allData: Producto[] = [];
   laboratorios: Laboratory[] = [];
+  @Output() editarProducto = new EventEmitter<Producto>(); 
 
   constructor(
     private productoService: ProductoService,
@@ -65,17 +66,8 @@ export class TableComponent implements OnInit {
     }
   }
 
-  editarProducto(product: Producto): void {
-    this.productoService.editarProducto(product).subscribe({
-      next: (updatedProduct) => {
-        console.log('Producto actualizado:', updatedProduct);
-        this.snackBar.open('Producto actualizado con éxito', 'Cerrar', { duration: 3000 });
-      },
-      error: (err) => {
-        console.error('Error al editar producto:', err);
-        this.snackBar.open('Error al actualizar el producto', 'Cerrar', { duration: 3000 });
-      }
-    });
+  editar(product: Producto) {
+    this.editarProducto.emit(product);
   }
 
   confirmarEliminar(product: Producto): void {
@@ -88,7 +80,6 @@ export class TableComponent implements OnInit {
   eliminarProducto(product: Producto): void {
     this.productoService.eliminarProducto(product.idProduct).subscribe({
       next: () => {
-        // Actualiza los datos en el cliente inmediatamente después de la eliminación
         this.allData = this.allData.filter(p => p.idProduct !== product.idProduct);
         this.dataSource = this.dataSource.filter(p => p.idProduct !== product.idProduct);
         this.snackBar.open('Producto eliminado correctamente', 'Cerrar', { duration: 3000 });

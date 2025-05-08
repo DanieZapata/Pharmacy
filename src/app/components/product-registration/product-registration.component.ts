@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { LaboratoryService, Laboratory } from '../../services/laboratory.service';
 import { TableComponent } from "../table/table.component";
 import { HttpClient } from '@angular/common/http';
-import { response } from 'express';
 
 @Component({
   selector: 'app-product-registration',
@@ -15,11 +14,13 @@ import { response } from 'express';
 })
 export class ProductRegistrationComponent {
   isModalOpen = false;
+  isEditMode = false;
   laboratories: Laboratory[] = [];
 
   private http = inject(HttpClient); 
 
   product = {
+    idProduct: null,
     nameProduct: '',
     priceProduct: 0,
     lote: '',
@@ -30,15 +31,37 @@ export class ProductRegistrationComponent {
     laboratoryId: null,
   };
 
-  constructor(private laboratoryService: LaboratoryService) {}
-    ngOnInit() {
-      this.laboratoryService.getLaboratories().subscribe({
-        next: (labs) => this.laboratories = labs,
-        error: (err) => console.error('Error cargando laboratorios', err)
-      });
-    }
+  onEditarProducto(product: any) {
+    this.openModal(product); 
+  }
 
-  openModal() {
+  constructor(private laboratoryService: LaboratoryService) {}
+
+  ngOnInit() {
+    this.laboratoryService.getLaboratories().subscribe({
+      next: (labs) => this.laboratories = labs,
+      error: (err) => console.error('Error cargando laboratorios', err)
+    });
+  }
+
+  openModal(product?: any) {
+    if (product) {
+      this.product = { ...product };
+      this.isEditMode = true;
+    } else {
+      this.product = {
+        idProduct: null,
+        nameProduct: '',
+        priceProduct: 0,
+        lote: '',
+        amount: 0,
+        expiration: '',
+        composition: '',
+        description: '',
+        laboratoryId: null,
+      };
+      this.isEditMode = false;
+    }
     this.isModalOpen = true;
   }
 
@@ -47,18 +70,23 @@ export class ProductRegistrationComponent {
   }
 
   submitForm() {
-    const url = 'http://localhost:8081/productos';
+    const url = this.isEditMode
+    ? `http://localhost:8081/productos/${this.product.idProduct}`
+    : 'http://localhost:8081/productos';
 
-    this.http.post(url, this.product).subscribe({
-      next: (response) => {
-        console.log('Producto registrado:', response);
-        this.closeModal();
-        window.location.reload();
-      },
-      error: (error) => {
-        console.error('Error al registrar el producto:', error);
-      }
-    })
+    const httpCall = this.isEditMode
+      ? this.http.put(url, this.product)
+      : this.http.post(url, this.product);
 
-  }
+      httpCall.subscribe({
+        next: () => {
+          console.log(this.isEditMode ? 'Producto actualizado' : 'Producto creado');
+          this.closeModal();
+          window.location.reload();
+        },
+        error: (err) => {
+          console.error('Error:', err);
+        }
+      });
+    }
 }
