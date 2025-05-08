@@ -7,7 +7,6 @@ import { LaboratoryComponent } from './pages/laboratory/laboratory.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
   { path: 'home', component: TableComponent },
-  { path: 'add-products', component: ProductRegistrationComponent },
   { path: 'products', component: ProductRegistrationComponent },
   { path: 'laboratories', component: LaboratoryComponent },
 ];
