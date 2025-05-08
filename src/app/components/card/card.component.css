@@ -1,9 +1,9 @@
 .lab-card {
   display: flex;
   flex-wrap: wrap;
-  gap: 1px;
+  gap: 5px;
   width: 232px;
-  height: 120px;
+  height: 110px;
   justify-content: center;
 }
 
@@ -21,7 +21,7 @@ mat-card-title {
 mat-card-header{
   background-color: gray;
   color: aliceblue;
-  padding: 5px 15px;
+  padding: 0px 10px;
   border-radius: 10px 10px 0 0;
   display: flex;
   align-items: center;
