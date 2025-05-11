@@ -1,4 +1,8 @@
 table {
     width: 100%;
   }
-  
+
+  .menu-button {
+    background: transparent;
+    border: none;
+  }
